@@ -111,6 +111,23 @@
         @endif
     </section>
 
+    {{-- Maybes --}}
+    <section class="mt-8">
+        <h2 class="text-lg font-semibold tracking-tight">Maybes</h2>
+
+        @if ($maybes->isEmpty())
+            <p class="mt-3 rounded-xl border border-dashed border-slate-300 bg-white p-6 text-center text-sm text-slate-500">
+                Nothing flagged as a maybe yet.
+            </p>
+        @else
+            <div class="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                @foreach ($maybes as $listing)
+                    <x-listing-card :listing="$listing" :href="route('review.show', $listing)" />
+                @endforeach
+            </div>
+        @endif
+    </section>
+
     @if ($priceDrops->isNotEmpty())
         <section class="mt-8">
             <h2 class="text-lg font-semibold tracking-tight">Recent price drops</h2>

@@ -31,6 +31,11 @@ class DashboardController extends Controller
                 ->with('photos')
                 ->orderBy('price')
                 ->get(),
+            'maybes' => Listing::active()
+                ->decision(Decision::Maybe)
+                ->with('photos')
+                ->orderBy('price')
+                ->get(),
             'priceDrops' => Listing::active()
                 ->whereHas('priceChanges', fn ($q) => $q->whereColumn('new_price', '<', 'old_price'))
                 ->with(['priceChanges', 'photos'])
